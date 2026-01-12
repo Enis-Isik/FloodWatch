@@ -125,6 +125,25 @@ In a new terminal, open the visualization interface
 ```
 streamlit run dashboard.py
 ```
+### Screen Shot for the Terminal Files Running Synchronously:
+
+<img width="1132" height="759" alt="image" src="https://github.com/user-attachments/assets/aed73ab8-6b91-427c-a4fd-363b80416f5e" />
+
+### Some Screen Shots for the UI:
+
+1. The Main UI Page:
+   
+<img width="1364" height="660" alt="image" src="https://github.com/user-attachments/assets/d88f85cb-d4ee-4ad1-a822-3e08fa1e1890" />
+
+2. Example Danger Decision For a Specific City(River):
+   
+<img width="1413" height="741" alt="image" src="https://github.com/user-attachments/assets/762ab7a5-1cfd-45ac-9e46-64d9020036d0" />
+
+3. Example Safe Decision For a Specific City(River):
+   
+<img width="1412" height="734" alt="image" src="https://github.com/user-attachments/assets/84d0c0a6-8085-43af-963a-96f7fbbacc28" />
+
+
 
 
 
