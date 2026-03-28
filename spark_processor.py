@@ -41,7 +41,7 @@ def process_batch(batch_df, batch_id):
     try:
         model = LogisticRegressionModel.load("flood_logistic_model")
     except:
-        print("⚠️ Waiting for model...")
+        print("Waiting for model...")
         return
 
     # feature engineering
