@@ -12,7 +12,7 @@ start_date = (datetime.date.today() - datetime.timedelta(days=365)).strftime("%Y
 
 def fetch_open_meteo(lat, lon, city_name):
     """Fetches global data. Includes FALLBACK for Maputo if river model returns 0."""
-    print(f"   📍 Fetching {city_name} (Open-Meteo)...")
+    print(f" Fetching {city_name} (Open-Meteo)...")
     try:
         # Weather rain data
         url_weather = "https://archive-api.open-meteo.com/v1/archive"
@@ -46,18 +46,18 @@ def fetch_open_meteo(lat, lon, city_name):
         df['water_level'] = river_hourly[:min_len]
         
         if df['water_level'].max() < 0.1:
-            print(f"      ⚠️ {city_name} River data is empty/zero. Simulating based on Rain History.")
+            print(f" {city_name} River data is empty/zero. Simulating based on Rain History.")
             # Heuristic: River level = Rolling sum of rain (3-day lag)
             df['water_level'] = df['rain_1h'].rolling(72).sum().fillna(0) * 0.1
         
         return df
     except Exception as e:
-        print(f"   ❌ Error {city_name}: {e}")
+        print(f" Error {city_name}: {e}")
         return pd.DataFrame()
 
 def fetch_usgs_direct(site_id, city_name, lat, lon):
     """Fetches USGS data using DIRECT JSON API (Bypassing libraries)"""
-    print(f"   📍 Fetching {city_name} (USGS Direct)...")
+    print(f" Fetching {city_name} (USGS Direct)...")
     try:
         # Fetch Daily Value for Gage Height or discharge 
         url = "https://waterservices.usgs.gov/nwis/dv/?format=json"
@@ -74,7 +74,7 @@ def fetch_usgs_direct(site_id, city_name, lat, lon):
         # Parse USGS JSON structure
         ts_list = data['value']['timeSeries']
         if not ts_list:
-            print(f"      ⚠️ No data found for {city_name}")
+            print(f" No data found for {city_name}")
             return pd.DataFrame()
             
         # Prefer 00065 (Height), fallback to 00060 (Discharge)
@@ -111,7 +111,7 @@ def fetch_usgs_direct(site_id, city_name, lat, lon):
         return df
         
     except Exception as e:
-        print(f"   ❌ Error {city_name}: {e}")
+        print(f" Error {city_name}: {e}")
         return pd.DataFrame()
 
 # Main
@@ -158,4 +158,4 @@ final_df = final_df.reset_index(drop=True)
 final_df = final_df[['city', 'rain_1h', 'water_level', 'rain_24h', 'level_percent', 'label']]
 
 final_df.to_csv("real_flood_history.csv", index=False)
-print(f"\n✅ Success! Saved {len(final_df)} rows. Check the thresholds above!")
+print(f"\n Success! Saved {len(final_df)} rows. Check the thresholds above!")
