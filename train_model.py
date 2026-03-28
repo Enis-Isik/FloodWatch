@@ -19,7 +19,7 @@ LIVE_DATA_PATH = "./live_data_storage/*.json"
 MODEL_PATH = "flood_logistic_model"
 
 def train_cycle():
-    print(f"🔄 [Auto-Retrainer] Waking up to update model...")
+    print(f"[Auto-Retrainer] Waking up to update model...")
 
     # load baseline historical data
     try:
