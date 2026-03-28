@@ -76,7 +76,7 @@ def get_water_level(sensor, rain_24h):
 
             # Fallback for Maputo if sensor blind but it's raining
             if discharge < 0.1 and rain_24h > 10.0:
-                print(f"   ⚠️ {sensor['name']} Simulated Level (due to heavy rain)")
+                print(f" {sensor['name']} Simulated Level (due to heavy rain)")
                 return (rain_24h / 5.0) + 1.0
             return discharge 
     except: return 0.0
